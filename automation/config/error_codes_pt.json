@@ -1,0 +1,13 @@
+{
+  "StorageOiNotAvailable": "Armazenamento em nuvem indisponível (oferta de armazenamento inativa)",
+  "FailedRecoveryNoSpacePath": "Destino de backup sem espaço em disco",
+  "CannotConnectToMachineWithNetworkShare": "Compartilhamento de rede inacessível",
+  "CloudStorageUnavailable": "Armazenamento em nuvem indisponível",
+  "BackupDidNotStart": "Backup não iniciou",
+  "ResourceQuotaExceeded": "Cota de recurso excedida",
+  "MemoErrorUnexpectedShutdown": "Desligamento inesperado da máquina durante o backup",
+  "LocationCredentialsNotCorrect": "Credenciais do destino de backup incorretas",
+  "MemoUserAccountIsLockedNu": "Conta de usuário bloqueada",
+  "MemoErrorMmsFailed": "Falha no serviço de gerenciamento do agente (MMS)",
+  "OperationCanceledByUser": "Operação cancelada pelo usuário"
+}

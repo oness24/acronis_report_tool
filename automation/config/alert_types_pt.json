@@ -1,0 +1,482 @@
+{
+  "AcroinstNotEnoughDiskSpaceLocalInstall": {
+    "bucket": "hygiene",
+    "severity": "alta",
+    "labelPt": "Espaço insuficiente para instalação local",
+    "descricao": "O instalador do agente Acronis não tem espaço em disco suficiente para concluir a instalação local; a instalação é interrompida.",
+    "causa": "Volume de destino com pouco espaço livre.",
+    "acao": "Liberar espaço no disco de destino e repetir a instalação.",
+    "doc": "Confirmado via API (categoria System; details: agentVersion, resourceName).",
+    "verificado": true
+  },
+  "AgentAutoUpdateFailed": {
+    "bucket": "hygiene",
+    "severity": "media",
+    "labelPt": "Falha na atualização automática do agente",
+    "descricao": "O agente Acronis não conseguiu se atualizar automaticamente para a versão mais recente. O endpoint permanece em versão desatualizada.",
+    "causa": "Falha no download do instalador a partir do servidor Acronis (rede, proxy, firewall); conflito com software de segurança; permissões insuficientes.",
+    "acao": "Verificar conectividade do agente com o servidor de atualização Acronis; atualizar manualmente via console se necessário; revisar artigo KB 70702.",
+    "doc": "https://care.acronis.com/s/article/70702-Acronis-Cyber-Protect-Cloud-Agent-auto-update-fails-with-Failed-to-download-installation-file-from-the-server?language=en_US",
+    "verificado": true
+  },
+  "BackupDidNotStart": {
+    "bucket": "hygiene",
+    "severity": "alta",
+    "labelPt": "Backup não iniciou",
+    "descricao": "Um plano de backup estava agendado, mas a execução não foi iniciada no horário previsto. Nenhum ponto de recuperação foi criado para o período.",
+    "causa": "Máquina estava desligada ou offline no horário agendado; serviço do agente parado; recurso bloqueado por outro processo.",
+    "acao": "Verificar se a máquina estava online no horário agendado; iniciar um backup manual; revisar status do agente e logs da atividade.",
+    "doc": "https://care.acronis.com/s/article/Backup-did-not-start-alert?language=en_US",
+    "verificado": true
+  },
+  "BackupFailed": {
+    "bucket": "hygiene",
+    "severity": "alta",
+    "labelPt": "Falha de backup",
+    "descricao": "O processo de backup foi iniciado, mas não concluiu com sucesso. Nenhum ponto de recuperação válido foi criado para a execução com falha.",
+    "causa": "Problemas de rede ou armazenamento; destino de backup inacessível (compartilhamento de rede, nuvem); espaço insuficiente; erros de VSS/snapshot; problemas de hardware.",
+    "acao": "Revisar o log da atividade para identificar o código de erro; corrigir o problema apontado (rede, destino, espaço); executar backup manual e verificar sucesso.",
+    "doc": "https://care.acronis.com/s/article/Backup-failed-alert?language=en_US",
+    "verificado": true
+  },
+  "BackupFinishedWithWarnings": {
+    "bucket": "hygiene",
+    "severity": "media",
+    "labelPt": "Backup concluído com avisos",
+    "descricao": "O backup foi concluído e um ponto de recuperação foi criado, mas foram registrados avisos durante o processo que merecem atenção.",
+    "causa": "Arquivos bloqueados por aplicações durante o snapshot; falhas parciais de VSS; problemas de acesso a compartilhamentos de rede; erros em itens individuais de M365.",
+    "acao": "Revisar o log de avisos na atividade de backup; corrigir itens bloqueados ou inacessíveis; monitorar se o aviso persiste nas próximas execuções.",
+    "doc": "https://kb.acronis.com/content/58991",
+    "verificado": true
+  },
+  "CPSDriverNotInstalled": {
+    "bucket": "posture",
+    "severity": "alta",
+    "labelPt": "Driver de proteção (CPS) não instalado",
+    "descricao": "O driver de proteção antimalware (CPS) não está instalado ou carregado no endpoint; a proteção em tempo real pode estar inativa.",
+    "causa": "Instalação incompleta/corrompida do agente ou conflito com software de segurança de terceiros.",
+    "acao": "Reinstalar ou reparar o agente; verificar conflito com AV de terceiros e logs de instalação.",
+    "doc": "Confirmado via API (categoria Antimalware protection).",
+    "verificado": true
+  },
+  "CpsRestartBrowser": {
+    "bucket": "hygiene",
+    "severity": "informativa",
+    "labelPt": "Reiniciar navegador para ativar proteção de URL",
+    "descricao": "A extensão de filtragem de URL foi instalada/atualizada, mas o navegador precisa ser reiniciado para ativar a proteção (informativo).",
+    "causa": "Instalação ou atualização recente da extensão de navegador.",
+    "acao": "Solicitar ao usuário que feche e reabra o navegador.",
+    "doc": "Confirmado via API (categoria URL filtering; details: planName, processFullPath).",
+    "verificado": true
+  },
+  "CpsURLfBrowserExtensionConnectionError": {
+    "bucket": "hygiene",
+    "severity": "media",
+    "labelPt": "Erro de conexão da extensão de filtragem de URL",
+    "descricao": "A extensão de filtragem de URL instalada no navegador não consegue se comunicar com o serviço local do Acronis Cyber Protection. A filtragem de URLs está inativa.",
+    "causa": "Serviço CPS local parado ou com falha; extensão bloqueada por política de grupo; conflito com outra extensão ou configuração do navegador; porta de comunicação bloqueada.",
+    "acao": "Verificar se o serviço Acronis Cyber Protection está em execução; verificar políticas de grupo que bloqueiam extensões; desabilitar e reabilitar a extensão; revisar artigo de troubleshooting.",
+    "doc": "https://acronis.my.site.com/s/article/Acronis-Cyber-Protect-How-to-troubleshoot-the-Unable-to-connect-to-the-URL-filtering-web-browser-extension-alert",
+    "verificado": true
+  },
+  "EDRIncidentDetected": {
+    "bucket": "posture",
+    "severity": "critica",
+    "labelPt": "Incidente EDR detectado",
+    "descricao": "O módulo de Endpoint Detection and Response (EDR) do Acronis identificou atividade suspeita ou maliciosa em um endpoint que requer investigação e resposta.",
+    "causa": "Comportamento anômalo de processos; técnicas de ataque detectadas (execução de código suspeito, movimentação lateral, persistência); malware que escapou da proteção em tempo real.",
+    "acao": "Abrir o incidente no console EDR para revisar a cadeia de ataque; isolar o endpoint se necessário; analisar os artefatos e indicadores de comprometimento (IOCs); remediar e fechar o incidente.",
+    "doc": "https://care.acronis.com/s/article/72822-Acronis-Cyber-Protect-15-Endpoint-Detection-and-Response-EDR-functionality-in-Acronis-Cyber-Protect-15-cloud-deployment?language=en_US",
+    "verificado": true
+  },
+  "IncompleteMachineInfo": {
+    "bucket": "hygiene",
+    "severity": "media",
+    "labelPt": "Informações do endpoint incompletas",
+    "descricao": "O agente não conseguiu coletar informações completas da máquina (inventário/configuração).",
+    "causa": "Falha de coleta (activity/error) durante registro ou sincronização do agente.",
+    "acao": "Atualizar o agente; revisar o errorMessage; forçar nova sincronização de inventário.",
+    "doc": "Confirmado via API (categoria System; details: activity, error, errorMessage).",
+    "verificado": true
+  },
+  "MachineOffline20": {
+    "bucket": "posture",
+    "severity": "media",
+    "labelPt": "Máquina offline há 20+ dias",
+    "descricao": "O agente do endpoint não se comunica com a plataforma Acronis há mais de 20 dias. Backups e proteções estão inativas nesse dispositivo.",
+    "causa": "Máquina desligada ou fora da rede há longo período; agente desinstalado; falha de rede persistente; máquina descontinuada sem remoção do agente.",
+    "acao": "Verificar se a máquina está operacional; se ativa, diagnosticar conectividade do agente; se descontinuada, remover da plataforma.",
+    "doc": "https://care.acronis.com/s/article/Acronis-Cyber-Backup-Machine-is-offline-for-more-than-X-days-alert?language=en_US",
+    "verificado": true
+  },
+  "MachineOffline30": {
+    "bucket": "posture",
+    "severity": "alta",
+    "labelPt": "Máquina offline há 30+ dias",
+    "descricao": "O agente do endpoint não se comunica com a plataforma Acronis há mais de 30 dias. O dispositivo está sem proteção de backup e segurança por período prolongado.",
+    "causa": "Máquina desligada ou fora da rede por período prolongado; agente desinstalado; máquina descontinuada; problema grave de conectividade.",
+    "acao": "Escalar para revisão: verificar se o endpoint ainda existe na organização; se ativo, restaurar conectividade urgentemente; se descontinuado, remover da plataforma.",
+    "doc": "https://care.acronis.com/s/article/Acronis-Cyber-Backup-Machine-is-offline-for-more-than-X-days-alert?language=en_US",
+    "verificado": true
+  },
+  "MaliciousUrlBlocked": {
+    "bucket": "posture",
+    "severity": "media",
+    "labelPt": "URLs maliciosas bloqueadas",
+    "descricao": "A filtragem de URL bloqueou o acesso a um endereço malicioso. O alerta registra a URL, o nome da ameaça e o processo/endereço de origem.",
+    "causa": "Usuário ou processo tentou acessar uma URL classificada como maliciosa.",
+    "acao": "Identificar a máquina e o processo (processFullPath); orientar o usuário; verificar se há malware associado na máquina.",
+    "doc": "Confirmado via API (categoria URL filtering; details: url, threatName, remoteAddress, websiteAccess).",
+    "verificado": true
+  },
+  "MiMonitoringCPUOverheating": {
+    "bucket": "hygiene",
+    "severity": "alta",
+    "labelPt": "Superaquecimento de CPU detectado",
+    "descricao": "O plano de monitoramento detectou que a temperatura da CPU do endpoint ultrapassou o limiar configurado, indicando risco de instabilidade ou dano ao hardware.",
+    "causa": "Ventilação inadequada; acúmulo de poeira nos dissipadores; falha no cooler; carga excessiva de CPU sustentada por longo período.",
+    "acao": "Verificar fisicamente o sistema de refrigeração do servidor; reduzir carga de CPU se possível; agendar manutenção preventiva de hardware.",
+    "doc": "https://care.acronis.com/s/article/Acronis-Cyber-Protect-Cloud-Monitoring-plan-generates-errors-like-Monitor-CPU-temperature-failed-to-collect-data-and-false-alerts-Removed-hardware-component-Added-hardware-component?language=en_US",
+    "verificado": true
+  },
+  "MiMonitoringHardwareComponentAdded": {
+    "bucket": "hygiene",
+    "severity": "informativa",
+    "labelPt": "Componente de hardware adicionado",
+    "descricao": "O plano de monitoramento detectou que um novo componente de hardware foi adicionado ao endpoint (memória, disco, placa de rede, etc.).",
+    "causa": "Manutenção ou upgrade de hardware legítimo; inserção de dispositivo removível (pendrive, HD externo); alteração não autorizada de hardware.",
+    "acao": "Confirmar com o responsável pelo endpoint se a mudança de hardware foi planejada; documentar a alteração; verificar se foi autorizada.",
+    "doc": "https://care.acronis.com/s/article/Acronis-Cyber-Protect-Cloud-Monitoring-plan-generates-errors-like-Monitor-CPU-temperature-failed-to-collect-data-and-false-alerts-Removed-hardware-component-Added-hardware-component?language=en_US",
+    "verificado": true
+  },
+  "MiMonitoringHardwareComponentRemoved": {
+    "bucket": "hygiene",
+    "severity": "media",
+    "labelPt": "Componente de hardware removido",
+    "descricao": "O plano de monitoramento detectou que um componente de hardware foi removido do endpoint em comparação ao inventário anterior.",
+    "causa": "Manutenção ou downgrade de hardware; remoção de dispositivo removível; possível roubo ou remoção não autorizada de componente.",
+    "acao": "Confirmar com o responsável se a remoção foi planejada; investigar se houve remoção não autorizada; atualizar inventário de hardware.",
+    "doc": "https://care.acronis.com/s/article/Acronis-Cyber-Protect-Cloud-Monitoring-plan-generates-errors-like-Monitor-CPU-temperature-failed-to-collect-data-and-false-alerts-Removed-hardware-component-Added-hardware-component?language=en_US",
+    "verificado": true
+  },
+  "MiMonitoringHardwareComponentReplaced": {
+    "bucket": "hygiene",
+    "severity": "informativa",
+    "labelPt": "Componente de hardware substituído",
+    "descricao": "O plano de monitoramento detectou que um componente de hardware foi substituído por um diferente (ex.: disco trocado, memória substituída).",
+    "causa": "Manutenção corretiva ou preventiva de hardware; substituição de componente defeituoso; upgrade de hardware.",
+    "acao": "Confirmar se a substituição foi autorizada e documentada; verificar se o novo componente funciona corretamente; atualizar inventário.",
+    "doc": "https://care.acronis.com/s/article/Acronis-Cyber-Protect-Cloud-Monitoring-plan-generates-errors-like-Monitor-CPU-temperature-failed-to-collect-data-and-false-alerts-Removed-hardware-component-Added-hardware-component?language=en_US",
+    "verificado": true
+  },
+  "MiMonitoringLowDiskSpace": {
+    "bucket": "hygiene",
+    "severity": "media",
+    "labelPt": "Espaço em disco baixo no endpoint",
+    "descricao": "O plano de monitoramento detectou espaço livre em disco abaixo do limite configurado.",
+    "causa": "Disco do endpoint próximo da capacidade máxima.",
+    "acao": "Liberar espaço no drive indicado (drive_name); ajustar o limite do monitor se apropriado.",
+    "doc": "Confirmado via API (categoria Monitoring; details: drive_name, remaining_space_value, threshold_value).",
+    "verificado": true
+  },
+  "MiMonitoringMetricGatheringFailed": {
+    "bucket": "hygiene",
+    "severity": "media",
+    "labelPt": "Falha na coleta de métricas de monitoramento",
+    "descricao": "O agente de monitoramento não conseguiu coletar uma ou mais métricas configuradas no plano de monitoramento para este endpoint.",
+    "causa": "Agente em versão desatualizada com incompatibilidade de coleta; permissões insuficientes; sensor de hardware não suportado pelo sistema operacional; falha temporária de WMI.",
+    "acao": "Atualizar o agente para a versão mais recente; verificar se o endpoint suporta o sensor configurado; revisar permissões do serviço do agente.",
+    "doc": "https://care.acronis.com/s/article/Acronis-Cyber-Protect-Cloud-Monitoring-plan-generates-errors-like-Monitor-CPU-temperature-failed-to-collect-data-and-false-alerts-Removed-hardware-component-Added-hardware-component?language=en_US",
+    "verificado": true
+  },
+  "MiMonitoringWorkloadRequiresRestart": {
+    "bucket": "hygiene",
+    "severity": "media",
+    "labelPt": "Reinicialização pendente no endpoint",
+    "descricao": "O plano de monitoramento indica que a máquina requer reinicialização (por exemplo, após atualizações pendentes).",
+    "causa": "Atualizações ou alterações que exigem reboot pendente.",
+    "acao": "Agendar a reinicialização da máquina indicada.",
+    "doc": "Confirmado via API (categoria Monitoring; details: workload_name, plan_name).",
+    "verificado": true
+  },
+  "OfferingItemIsNotSufficient": {
+    "bucket": "hygiene",
+    "severity": "critica",
+    "labelPt": "Item de oferta insuficiente para o plano aplicado",
+    "descricao": "Um item de oferta/licença necessário não está atribuído ou é insuficiente, deixando recursos de proteção indisponíveis no dispositivo.",
+    "causa": "Licença/item de oferta ausente ou insuficiente para o recurso exigido pelo plano de proteção.",
+    "acao": "Atribuir o item de oferta necessário ao tenant/dispositivo e revisar o plano de proteção (verifique se a atribuição manual está disponível).",
+    "doc": "Confirmado via API (categoria Licensing; campos: noOfferingItem, notAvailableFeatures, manualAssignAvailable).",
+    "verificado": true
+  },
+  "PeripheralDeviceAccessBlocked": {
+    "bucket": "posture",
+    "severity": "media",
+    "labelPt": "Acesso a dispositivo periférico bloqueado",
+    "descricao": "O controle de dispositivos bloqueou o acesso a um periférico (por exemplo, USB). Registra o dispositivo, a ação tomada e o usuário.",
+    "causa": "Conexão de um dispositivo não permitido pela política de controle de dispositivos.",
+    "acao": "Verificar se o dispositivo deveria ser permitido; ajustar a política ou orientar o usuário.",
+    "doc": "Confirmado via API (categoria Device control; details: usbDeviceName, actionTaken, userName, objectName).",
+    "verificado": true
+  },
+  "PMInstallationFailed": {
+    "bucket": "hygiene",
+    "severity": "media",
+    "labelPt": "Falha na instalação de patch",
+    "descricao": "A instalação de um ou mais patches pelo módulo de Patch Management do Acronis falhou. O endpoint permanece com a vulnerabilidade em aberto.",
+    "causa": "Instalador do patch com erro; usuário precisa estar logado para instalar o update; conflito com outro software; reinicialização pendente bloqueando instalação; problema de rede.",
+    "acao": "Revisar o log da atividade de patch para identificar o motivo específico da falha; corrigir a condição bloqueante e re-aprovar o patch; verificar se é necessário intervenção do usuário.",
+    "doc": "https://care.acronis.com/s/article/73201-Acronis-Cyber-Protect-Cloud-Patch-installation-fails-with-The-user-must-be-logged-in-to-install-update?language=en_US",
+    "verificado": true
+  },
+  "ProtectionPlanConflictDetected": {
+    "bucket": "hygiene",
+    "severity": "media",
+    "labelPt": "Conflito de plano de proteção detectado",
+    "descricao": "Dois ou mais planos de proteção aplicados ao mesmo endpoint possuem módulos conflitantes (ex.: dois planos com backup ou dois com antimalware ativados simultaneamente).",
+    "causa": "Endpoint pertence a grupos dinâmicos com planos sobrepostos; aplicação manual de plano conflitante com plano herdado.",
+    "acao": "Revisar os planos aplicados ao endpoint; garantir que planos em um mesmo endpoint não tenham módulos sobrepostos; resolver o conflito ajustando os planos ou grupos dinâmicos.",
+    "doc": "https://kb.acronis.com/content/70241",
+    "verificado": true
+  },
+  "ProtectionServiceNotWorking": {
+    "bucket": "hygiene",
+    "severity": "critica",
+    "labelPt": "Serviço de proteção inoperante",
+    "descricao": "O serviço Acronis Cyber Protection (ou Active Protection) está habilitado no plano mas não está respondendo ou não iniciou no endpoint. O dispositivo está desprotegido.",
+    "causa": "Serviço parado ou com falha após atualização do agente; conflito com software de segurança de terceiros; erro de inicialização do driver CPS; problema de permissões.",
+    "acao": "Reiniciar o serviço Acronis Cyber Protection no endpoint; verificar logs do serviço; se o problema persistir, reinstalar o agente; consultar KB 65381.",
+    "doc": "https://care.acronis.com/s/article/65381-Acronis-Cyber-Protect-Cloud-Troubleshooting-Cyber-Protection-or-Active-Protection-service-is-not-responding-and-Active-Protection-service-is-not-running-alerts?language=en_US",
+    "verificado": true
+  },
+  "ResourceQuotaExceeded": {
+    "bucket": "hygiene",
+    "severity": "alta",
+    "labelPt": "Cota de recurso excedida",
+    "descricao": "O uso de um recurso (dispositivos, armazenamento, licenças) ultrapassou a cota contratada/configurada para o tenant. Novas proteções ou backups podem ser bloqueados.",
+    "causa": "Crescimento do ambiente acima da cota contratada; aumento de dispositivos protegidos sem ajuste de contrato; acúmulo de dados além do previsto.",
+    "acao": "Revisar o consumo via /usages; ampliar a cota contratada ou reduzir o uso; remover dispositivos não utilizados; ajustar políticas de retenção.",
+    "doc": "https://care.acronis.com/s/article/57328-Acronis-Cyber-Protect-Cloud-storage-and-devices-quotas-and-overage?language=en_US",
+    "verificado": true
+  },
+  "ResourceQuotaReached": {
+    "bucket": "hygiene",
+    "severity": "media",
+    "labelPt": "Cota de recurso atingida",
+    "descricao": "O uso de um recurso (dispositivos, armazenamento, licenças) atingiu o limite configurado para o tenant, sinalizando iminente ultrapassagem.",
+    "causa": "Crescimento gradual do ambiente; adição de novos endpoints ou aumento de dados protegidos próximo ao limite contratado.",
+    "acao": "Revisar o consumo atual via /usages; planejar ampliação da cota antes de excedê-la; otimizar políticas de retenção.",
+    "doc": "https://care.acronis.com/s/article/57328-Acronis-Cyber-Protect-Cloud-storage-and-devices-quotas-and-overage?language=en_US",
+    "verificado": true
+  },
+  "StorageQuotaAt80": {
+    "bucket": "hygiene",
+    "severity": "media",
+    "labelPt": "Armazenamento em nuvem atingiu 80% da cota",
+    "descricao": "O armazenamento de backup em nuvem do tenant atingiu 80% da cota contratada. É necessário tomar ação antes que o espaço se esgote.",
+    "causa": "Crescimento do volume de dados protegidos; políticas de retenção muito longas; adição de novos endpoints sem revisão da cota de armazenamento.",
+    "acao": "Revisar políticas de retenção; excluir backups antigos desnecessários; avaliar ampliação da cota de armazenamento junto ao parceiro.",
+    "doc": "https://care.acronis.com/s/article/57328-Acronis-Cyber-Protect-Cloud-storage-and-devices-quotas-and-overage?language=en_US",
+    "verificado": true
+  },
+  "TotalProtectDeniedCategoryURLDetected": {
+    "bucket": "posture",
+    "severity": "media",
+    "labelPt": "Acesso a categoria de URL bloqueada detectado",
+    "descricao": "Acesso a uma URL de categoria bloqueada pela política de filtragem de conteúdo.",
+    "causa": "Usuário tentou acessar um site de categoria não permitida (threatCategories).",
+    "acao": "Revisar a política de categorias; orientar o usuário ou liberar a categoria se for falso positivo.",
+    "doc": "Confirmado via API (categoria URL filtering; details: url, threatCategories).",
+    "verificado": true
+  },
+  "TotalProtectMalwareDetectedODS": {
+    "bucket": "posture",
+    "severity": "alta",
+    "labelPt": "Malware detectado em varredura sob demanda",
+    "descricao": "Malware detectado durante varredura sob demanda (On-Demand Scan). Registra arquivo, caminho, hash e nome da ameaça.",
+    "causa": "Arquivo malicioso encontrado no endpoint durante a varredura.",
+    "acao": "Confirmar a ação tomada (actionTaken: quarentena/remoção); investigar a origem do arquivo (filePath) e possível propagação.",
+    "doc": "Confirmado via API (categoria Antimalware protection; details: fileName, filePath, threatName, fileHashSHA256, actionTaken).",
+    "verificado": true
+  },
+  "VAScanFailed": {
+    "bucket": "hygiene",
+    "severity": "media",
+    "labelPt": "Falha na varredura de vulnerabilidades",
+    "descricao": "A varredura de avaliação de vulnerabilidades (Vulnerability Assessment) não foi concluída com sucesso. O inventário de vulnerabilidades do endpoint pode estar incompleto.",
+    "causa": "Serviço Windows Update não está em execução; erro no agente de atualização do Windows (WSUS/WUA); conectividade com a nuvem interrompida; conflito de software.",
+    "acao": "Verificar se o serviço Windows Update está ativo; corrigir erros de WUA apontados no log; garantir que o endpoint tem acesso à internet; consultar KB 71115.",
+    "doc": "https://care.acronis.com/s/article/71115-Acronis-Cyber-Protect-Vulnerability-scan-finishes-with-Vulnerability-Assessment-has-failed-due-to-error-in-Windows-Updates?language=en_US",
+    "verificado": true
+  },
+  "WdaGpoConflict": {
+    "bucket": "posture",
+    "severity": "alta",
+    "labelPt": "Conflito entre GPO e configurações do Windows Defender",
+    "descricao": "As configurações do Windows Defender gerenciadas pelo Acronis estão em conflito com políticas de Grupo (GPO) aplicadas ao endpoint. O Acronis não consegue controlar plenamente as preferências do Defender.",
+    "causa": "GPO do Active Directory sobrescreve configurações do Windows Defender definidas pelo Acronis; conflito de precedência entre política de domínio e configuração local.",
+    "acao": "Revisar as GPOs aplicadas ao endpoint e remover ou ajustar as que conflitam com as configurações do Acronis; ou configurar o Acronis para não gerenciar o Defender nesse endpoint.",
+    "doc": "https://care.acronis.com/s/article/68358-Acronis-Cyber-Protect-Cloud-security-products-conflict-alerts?language=en_US",
+    "verificado": true
+  },
+  "WdaModuleExecutionFailed": {
+    "bucket": "posture",
+    "severity": "alta",
+    "labelPt": "Falha na execução de módulo do Windows Defender",
+    "descricao": "Um módulo de proteção (Windows Defender/antimalware) falhou ao executar no endpoint.",
+    "causa": "Erro interno do módulo, conflito de ambiente ou com AV de terceiros (moduleName/errorDescription).",
+    "acao": "Revisar o errorDescription; reiniciar o serviço/agente; verificar conflitos de antimalware.",
+    "doc": "Confirmado via API (categoria Antimalware protection; details: moduleName, errorDescription).",
+    "verificado": true
+  },
+  "WdaTamperProtectionEnabled": {
+    "bucket": "posture",
+    "severity": "alta",
+    "labelPt": "Tamper Protection do Windows Defender ativada",
+    "descricao": "A funcionalidade Tamper Protection do Windows Defender está ativada no endpoint, impedindo que o Acronis modifique as configurações do Defender programaticamente.",
+    "causa": "Tamper Protection habilitada via Windows Security Center ou política; impede que softwares externos (incluindo o Acronis) alterem configurações do Defender.",
+    "acao": "Desabilitar o Tamper Protection temporariamente para permitir que o Acronis configure o Defender; ou usar GPO/Intune para gerenciar o Tamper Protection de forma centralizada.",
+    "doc": "https://care.acronis.com/s/article/67340-Acronis-Cyber-Protect-Cloud-Windows-Defender-preferences-cannot-be-controlled-because-Tamper-protection-feature-is-enabled-alert?language=en_US",
+    "verificado": true
+  },
+  "WdaThirdPartyAvBlock": {
+    "bucket": "posture",
+    "severity": "alta",
+    "labelPt": "Windows Defender bloqueado por antivírus de terceiros",
+    "descricao": "Um antivírus de terceiros instalado no endpoint está bloqueando o Windows Defender, impedindo que o Acronis gerencie as configurações de antivírus via Defender.",
+    "causa": "Antivírus de terceiros ativo desabilita automaticamente o Windows Defender; o Acronis tenta gerenciar o Defender mas o terceiro tem prioridade.",
+    "acao": "Desinstalar o antivírus de terceiros se o Acronis deve ser o produto de proteção; ou ajustar o plano para não gerenciar o Windows Defender enquanto há outro AV instalado.",
+    "doc": "https://care.acronis.com/s/article/68358-Acronis-Cyber-Protect-Cloud-security-products-conflict-alerts?language=en_US",
+    "verificado": true
+  },
+  "WSCProductConflictWithAntimalwareProtection": {
+    "bucket": "posture",
+    "severity": "alta",
+    "labelPt": "Conflito com produto registrado no Windows Security Center",
+    "descricao": "O Windows Security Center (WSC) detectou um conflito entre o produto de antimalware do Acronis e outro produto de segurança registrado no sistema.",
+    "causa": "Dois ou mais produtos de antivírus/antimalware ativos simultaneamente; instalação de terceiros não removida antes de ativar a proteção Acronis.",
+    "acao": "Desinstalar o produto de antivírus conflitante; ou desabilitar a proteção em tempo real do Acronis se o terceiro é o produto de segurança preferido; verificar artigo KB 68358.",
+    "doc": "https://care.acronis.com/s/article/68358-Acronis-Cyber-Protect-Cloud-security-products-conflict-alerts?language=en_US",
+    "verificado": true
+  },
+  "DeviceControlBlocked": {
+    "bucket": "posture",
+    "severity": "media",
+    "labelPt": "Acesso a dispositivo bloqueado (controle de dispositivos)",
+    "descricao": "O módulo de controle de dispositivos bloqueou o acesso de um usuário a um tipo de dispositivo (USB, Bluetooth, etc.) conforme política configurada.",
+    "causa": "Usuário tentou usar dispositivo não permitido pela política de Device Control do plano de proteção.",
+    "acao": "Verificar logs de controle de dispositivos; se necessário, criar exceção para o dispositivo ou usuário; documentar para auditoria.",
+    "doc": "",
+    "verificado": false
+  },
+  "MachineOffline": {
+    "bucket": "posture",
+    "severity": "media",
+    "labelPt": "Máquina offline",
+    "descricao": "O agente do endpoint não está se comunicando com a plataforma Acronis. Backups e proteções podem estar inativas.",
+    "causa": "Máquina desligada; problema de rede; agente parado ou com falha; firewall bloqueando comunicação.",
+    "acao": "Verificar se a máquina está ligada e com rede; tentar se conectar remotamente; verificar status do serviço do agente.",
+    "doc": "https://care.acronis.com/s/article/Acronis-Cyber-Backup-Machine-is-offline-for-more-than-X-days-alert?language=en_US",
+    "verificado": true
+  },
+  "LowDiskSpace": {
+    "bucket": "hygiene",
+    "severity": "alta",
+    "labelPt": "Espaço em disco baixo",
+    "descricao": "Alerta genérico de espaço em disco baixo detectado no endpoint ou destino de backup.",
+    "causa": "Volume com alto consumo de dados; backups locais acumulados; logs crescendo sem rotação.",
+    "acao": "Liberar espaço no volume afetado; revisar política de retenção local; considerar expansão de armazenamento.",
+    "doc": "",
+    "verificado": false
+  },
+  "RebootPending": {
+    "bucket": "hygiene",
+    "severity": "baixa",
+    "labelPt": "Reinicialização pendente",
+    "descricao": "O endpoint possui uma reinicialização pendente que precisa ser concluída para que atualizações ou mudanças de configuração entrem em vigor.",
+    "causa": "Patches instalados aguardando reinício; atualização do agente; instalação de software.",
+    "acao": "Agendar reinicialização do endpoint em janela de manutenção; verificar se não há processos críticos em execução.",
+    "doc": "",
+    "verificado": false
+  },
+  "StorageQuotaAt100": {
+    "bucket": "hygiene",
+    "severity": "critica",
+    "labelPt": "Armazenamento em nuvem esgotado (100% da cota)",
+    "descricao": "O armazenamento de backup em nuvem atingiu 100% da cota contratada. Novos backups falharão ou serão bloqueados até que espaço seja liberado ou a cota ampliada.",
+    "causa": "Crescimento de dados além da cota; retenção insuficiente configurada; adição de workloads sem ampliação de cota.",
+    "acao": "Liberar espaço imediatamente excluindo backups antigos; ampliar urgentemente a cota contratada; ajustar política de retenção.",
+    "doc": "https://care.acronis.com/s/article/57328-Acronis-Cyber-Protect-Cloud-storage-and-devices-quotas-and-overage?language=en_US",
+    "verificado": true
+  },
+  "SuspiciousActivityDetected": {
+    "bucket": "posture",
+    "severity": "critica",
+    "labelPt": "Atividade suspeita detectada (Active Protection)",
+    "descricao": "O módulo Active Protection do Acronis detectou comportamento similar a ransomware ou atividade maliciosa no endpoint. Arquivos podem ter sido protegidos automaticamente.",
+    "causa": "Comportamento de processo suspeito (criptografia massiva de arquivos, modificação de extensões); ransomware ou wiper ativo; falso positivo por aplicação legítima.",
+    "acao": "Verificar imediatamente o endpoint; identificar o processo responsável; se ransomware confirmado, isolar o endpoint; restaurar arquivos afetados do backup; remover a ameaça.",
+    "doc": "https://care.acronis.com/s/article/59764-Acronis-Cyber-Backup-Suspicious-activity-is-detected-alert?language=en_US",
+    "verificado": true
+  },
+  "BackupValidationFailed": {
+    "bucket": "hygiene",
+    "severity": "alta",
+    "labelPt": "Falha na validação do backup",
+    "descricao": "A tarefa de validação do backup detectou inconsistências nos dados do ponto de recuperação. A integridade do backup não pode ser garantida.",
+    "causa": "Corrupção de dados durante a transferência; problema de armazenamento (bad blocks); backup interrompido durante escrita.",
+    "acao": "Investigar a causa da corrupção; executar novo backup completo; verificar integridade do armazenamento de destino; considerar trocar destino se problemas persistirem.",
+    "doc": "https://care.acronis.com/s/article/Validation-failed-alert?language=en_US",
+    "verificado": true
+  },
+  "AntiMalwareDetection": {
+    "bucket": "posture",
+    "severity": "critica",
+    "labelPt": "Malware detectado pela proteção em tempo real",
+    "descricao": "O módulo de proteção antimalware em tempo real do Acronis detectou e bloqueou ou quarentenou um arquivo ou atividade maliciosa no endpoint.",
+    "causa": "Arquivo infectado aberto pelo usuário; download de malware; execução de script malicioso; arquivo em mídia removível.",
+    "acao": "Revisar o relatório de detecção; verificar que o item foi quarentenado ou removido; realizar varredura completa do sistema; investigar vetor de entrada.",
+    "doc": "",
+    "verificado": false
+  },
+  "BackupChainBroken": {
+    "bucket": "hygiene",
+    "severity": "alta",
+    "labelPt": "Cadeia de backup interrompida",
+    "descricao": "A cadeia de backups incrementais foi interrompida, exigindo um novo backup completo para restabelecer a integridade da cadeia de recuperação.",
+    "causa": "Backup completo base corrompido ou excluído; migração de destino de armazenamento; mudança de configuração do plano.",
+    "acao": "Executar um novo backup completo para estabelecer uma nova cadeia; verificar o motivo da interrupção para evitar recorrência.",
+    "doc": "",
+    "verificado": false
+  },
+  "PatchInstallationRequired": {
+    "bucket": "hygiene",
+    "severity": "media",
+    "labelPt": "Patches pendentes de instalação",
+    "descricao": "A avaliação de vulnerabilidades identificou patches de segurança aprovados que ainda não foram instalados no endpoint.",
+    "causa": "Patches aprovados aguardando próxima janela de manutenção; instalação falhou anteriormente; endpoint offline durante a instalação agendada.",
+    "acao": "Revisar os patches pendentes no console de Patch Management; aprovar e instalar patches críticos de segurança; agendar janela de manutenção se necessário.",
+    "doc": "https://www.acronis.com/en-us/support/documentation/AcronisCyberProtect_15/patch-management.html",
+    "verificado": false
+  },
+  "AgentNotReachable": {
+    "bucket": "hygiene",
+    "severity": "alta",
+    "labelPt": "Agente inacessível",
+    "descricao": "O servidor Acronis não consegue se comunicar com o agente instalado no endpoint. O dispositivo está inacessível para gerenciamento remoto e proteção.",
+    "causa": "Firewall bloqueando porta de comunicação do agente; serviço do agente parado; problema de rede entre o endpoint e o datacenter Acronis.",
+    "acao": "Verificar firewall e regras de rede; reiniciar o serviço do agente; verificar conectividade com us-cloud.acronis.com ou br02-cloud.acronis.com na porta correta.",
+    "doc": "https://care.acronis.com/s/article/63130-Acronis-Cyber-Protect-Cloud-troubleshooting-Agent-registration-issues?language=en_US",
+    "verificado": false
+  },
+  "VulnerabilityFound": {
+    "bucket": "hygiene",
+    "severity": "alta",
+    "labelPt": "Vulnerabilidade detectada no endpoint",
+    "descricao": "A varredura de avaliação de vulnerabilidades identificou uma ou mais vulnerabilidades conhecidas (CVEs) em software instalado no endpoint.",
+    "causa": "Software desatualizado com vulnerabilidades publicadas; patches de segurança não aplicados.",
+    "acao": "Revisar as vulnerabilidades encontradas; aplicar patches disponíveis via Patch Management; priorizar CVEs críticos e de alta severidade.",
+    "doc": "https://www.acronis.com/en-us/support/documentation/AcronisCyberProtect_15/vulnerability-assessment.html",
+    "verificado": false
+  }
+}

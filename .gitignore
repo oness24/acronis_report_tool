@@ -1,0 +1,6 @@
+﻿secrets.json
+automation/config/secrets.json
+automation/output/
+output/
+data/
+*token*.txt

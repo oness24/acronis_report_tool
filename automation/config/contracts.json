@@ -1,0 +1,12 @@
+﻿{
+    "_comment":  "Public build: only cross-data-center merge mappings are kept; contract line items are intentionally omitted. Section gating falls back to active licenses (/usages).",
+    "599c6865-e26c-427d-8fec-7d9a94924bd5":  {
+                                                 "mergeFrom":  [
+                                                                   {
+                                                                       "dataCenter":  "br02-cloud",
+                                                                       "tenantId":  "673bba9b-6c28-4a21-84f8-7baae78033a3",
+                                                                       "label":  "Biocal Workspace (M365)"
+                                                                   }
+                                                               ]
+                                             }
+}

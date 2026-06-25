@@ -1,0 +1,17 @@
+{
+  "_comment": "Partner roots per data center. Credentials live in secrets.json (not committed). The pipeline auto-discovers all customer tenants under each root.",
+  "datacenters": [
+    {
+      "name": "us-cloud",
+      "baseUrl": "https://us-cloud.acronis.com",
+      "rootTenantId": "8154ae96-4fee-4921-b4a1-d9618172927c",
+      "rootTenantName": "Contego Security"
+    },
+    {
+      "name": "br02-cloud",
+      "baseUrl": "https://br02-cloud.acronis.com",
+      "rootTenantId": "5a5f3f57-bbdc-49bd-bfc8-c22129986de3",
+      "rootTenantName": "Contego Security"
+    }
+  ]
+}
